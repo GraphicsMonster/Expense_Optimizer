@@ -1,17 +1,20 @@
 const expense = require('./expenseModel.js')
-
+const uuid = require('uuid')
 
 class userModel{
     username
     salary
     desiredLeft
     expenseArray
+    id;
     constructor(username, salary, desiredLeft) {
+        this.id = uuid.v4()
         this.username = username;
         this.salary = salary;
         this.desiredLeft = desiredLeft;
         this.expenseArray = [];
     }
+
 
     get Username(){
         return this.username
