@@ -1,1 +1,6 @@
+<<<<<<< HEAD
+/node_modules
+.idea
+=======
 node_modules
+>>>>>>> upstream/JWT-features
