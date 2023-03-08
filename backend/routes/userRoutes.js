@@ -1,8 +1,9 @@
+const {create} = require("../handlers/userHandlers");
 module.exports = function(app){
     var location = require('../handlers/userHandlers')
 
     //Add new user instance - registration
-    app.post('/user')
+    app.post('/user', location.create)
 
     //Change current user's salary
     app.put('/user/salary/:newSalary')

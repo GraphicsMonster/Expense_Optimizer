@@ -1,11 +1,51 @@
-var ExpenseModel = {
-    title: String,
-    type: ExpenseType,
-    Weight: generateWeight(this.type),
-    Amount: Number,
-    Price: Number
-};
+const uuid= require('uuid')
+class ExpenseModel{
+    #id
+    #title
+    #amount
+    #price
+    #type
 
+    constructor(title, amount, price, type) {
+        this.#id = uuid();
+        console.log('New uuid: ' + this.#id);
+        this.#price = price;
+        this.#amount = amount;
+        this.#title = title;
+        this.#type = ExpenseType.type;
+    }
+
+    get Type() {
+        return this.#type;
+    }
+
+    set Type(type) {
+        this.#type = type;
+    }
+
+    get Amount() {
+        return this.#amount;
+    }
+
+    set Amount(amount) {
+        this.#amount = amount;
+    }
+
+    get Price() {
+        return this.#price
+    }
+
+    set Price(price) {
+        this.#price = price;
+    }
+
+    get Title(){
+        return this.#title;
+    }
+    set Title(title){
+        this.#title = title;
+    }
+}
 
 const ExpenseType = {
     Housing: 'Housing',
