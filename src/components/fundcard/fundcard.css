@@ -1,0 +1,38 @@
+.card {
+  background-color: #ff8b13;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.15);
+  margin: 10vh auto;
+  display:flex;
+
+}
+@media (min-width: 490px) {
+  .card {
+    width: 40vw;
+    height: 20vh;
+  }
+
+
+}
+
+@media (max-width: 490px) {
+  .card {
+    width: 80vw;
+    height: 20vh;
+    margin-top: 10vh;
+  }
+
+
+}
+
+.card .card-text {
+  text-align: center;
+  margin: auto auto;
+  color: #fff;
+  display: flex;
+}
+
+.card .card-text h2 {
+  margin: auto;
+  font-size: 3rem;
+}
