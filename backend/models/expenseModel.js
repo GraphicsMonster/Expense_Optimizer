@@ -1,49 +1,46 @@
-const uuid= require('uuid')
 class ExpenseModel{
-    #id
-    #title
-    #amount
-    #price
-    #type
+    title
+    amount
+    price
+    type
 
     constructor(title, amount, price, type) {
-        this.#id = uuid();
-        console.log('New uuid: ' + this.#id);
-        this.#price = price;
-        this.#amount = amount;
-        this.#title = title;
-        this.#type = ExpenseType.type;
+        console.log('New uuid: ' + this.id);
+        this.price = price;
+        this.amount = amount;
+        this.title = title;
+        this.type = ExpenseType.type;
     }
 
     get Type() {
-        return this.#type;
+        return this.type;
     }
 
     set Type(type) {
-        this.#type = type;
+        this.type = type;
     }
 
     get Amount() {
-        return this.#amount;
+        return this.amount;
     }
 
     set Amount(amount) {
-        this.#amount = amount;
+        this.amount = amount;
     }
 
     get Price() {
-        return this.#price
+        return this.price
     }
 
     set Price(price) {
-        this.#price = price;
+        this.price = price;
     }
 
     get Title(){
-        return this.#title;
+        return this.title;
     }
     set Title(title){
-        this.#title = title;
+        this.title = title;
     }
 }
 

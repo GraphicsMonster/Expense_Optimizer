@@ -1,7 +1,8 @@
+
 const expense = require('./expenseModel.js')
 const uuid = require('uuid')
 
-class userModel{
+class UserModel{
     username
     salary
     desiredLeft
@@ -54,7 +55,7 @@ class userModel{
 
 }
 
-module.exports = {userModel}
+module.exports = {UserModel}
 
 
 
