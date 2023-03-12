@@ -1,13 +1,19 @@
 import React from 'react'
 import "./items.css"
+import Modal from "../expenseModal/modal.js"
 
 function Items() {
+
+  const toggleModal = (prop) => {
+    return <Modal prop={prop} />
+  }
+
   return (
     <div className='items'>
         <div className='items-container'>
             <div className='items-li'>
             <div className='items-li-container'>
-                    <p>Housing</p>
+                    <button onClick={toggleModal()}><p>Housing</p></button>
                     <hr />
                 </div>
             </div>

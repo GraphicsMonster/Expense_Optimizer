@@ -1,0 +1,17 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  max-width: 40vw;
+  margin: auto;
+  text-align: center;
+  padding: 5%;
+}
+
+@media screen and (max-width: 490px) {
+  .modal h2 {
+    font-size: 1rem;
+  }
+  .modal {
+    font-size: 0.8rem;
+  }
+}

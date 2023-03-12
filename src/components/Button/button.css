@@ -1,0 +1,9 @@
+.mybtn button {
+  margin: 1%;
+  border-radius: 15px;
+  font-size: 1rem;
+  padding: 2% 5%;
+  width: 90px;
+  border-color: transparent;
+  font-family: "Space Grotesk", sans-serif;
+}
