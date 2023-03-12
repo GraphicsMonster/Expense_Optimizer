@@ -19,6 +19,9 @@ module.exports = new EntitySchema({
         desiredLeft: {
             type: "int",
         },
+        password:{
+            type: "varchar",
+        }
     },
     relations:{
        categories:{

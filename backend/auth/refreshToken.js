@@ -13,6 +13,22 @@ function getRefreshedToken(payload, jwtSecretKey, jwtExpirationDate){
     });
 }
 
+const authenticateJWT = (req, res, next) => {
+    let token = req.cookies["access_token"];
+    let payload;
+    try{
+        payload = jwt.verify(token, "group_cooperation");
+    }catch (e){
+        if(e instanceof jwt.JsonWebTokenError){
+            return res.status(401).end();
+        }
+    }
+    console.log(payload);
+    return next();
+};
+
+module.exports = {authenticateJWT}
+
 exports.refresh = function(req, res){
     let token = req.cookies["access_token"];
     if(!token){
@@ -33,3 +49,4 @@ exports.refresh = function(req, res){
     res.cookie("access_token", newToken, {maxAge: appData.getDate * 1000});
     res.end();
 }
+

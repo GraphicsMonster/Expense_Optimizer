@@ -7,13 +7,14 @@ class UserModel{
     salary
     desiredLeft
     expenseArray
-    id;
-    constructor(username, salary, desiredLeft) {
-        this.id = uuid.v4()
+
+    password
+    constructor(username, salary, desiredLeft, password) {
         this.username = username;
         this.salary = salary;
         this.desiredLeft = desiredLeft;
         this.expenseArray = [];
+        this.password = password;
     }
 
 
