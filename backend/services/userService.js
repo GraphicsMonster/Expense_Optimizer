@@ -5,13 +5,33 @@ class UserService{
         this.userRepository = userRepository;
     }
     async addNewUser(userModel){
-        this.userRepository
+         return this.userRepository
             .save(userModel)
-            .then(function(savedModel){
-                console.log("Entered this model: ", savedModel);
-            }).catch((e)=>{
-                console.log(e);
-        })
+
+    }
+
+    async changeUsername(username, newUsername){
+        await this.userRepository
+            .createQueryBuilder()
+            .update(require('../Entities/User.js'))
+            .set([
+                {username: newUsername}
+            ])
+            .where("username = :username", {username: username})
+            .execute();
+    }
+
+    async checkExistence(username){
+        const user = await this.userRepository.findOneBy({username: username});
+        if (user == null){
+            return false;
+        }
+        return true;
+    }
+
+    async fetchPassword(username){
+        const user = await this.userRepository.findOneBy({username: username});
+        return user.password;
     }
 }
 
