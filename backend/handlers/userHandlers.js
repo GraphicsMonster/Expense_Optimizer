@@ -1,23 +1,28 @@
 var location = require('../models/userModel.js');
 const jwt = require("jsonwebtoken")
 const appData= require('../config/app.js');
+const userService = require('../services/userService.js');
+const db = require('../db/data-source.js');
 
-exports.register = function (req, res){
+
+exports.register = async function (req, res) {
     console.log("Date: " + appData.getDate)
-    if(!req.body){
+    if (!req.body) {
         res.status(400).send({message: "user model can't be empty"});
     }
 
     let body = req.body;
     let username = body.username;
-    let userModel = new location.userModel(username, req.body.salary, req.body.desiredLeft);
+    let userModel = new location.UserModel(username, req.body.salary, req.body.desiredLeft);
 
-    const token = jwt.sign({username}, appData.getKey,{
+    const token = jwt.sign({username}, appData.getKey, {
         algorithm: "HS256",
         expiresIn: 300,
     })
 
     console.log("Token: " + token);
+    const uService = new userService.UserService(db.dataSource.getRepository("User"));
+    await uService.addNewUser(userModel);
 
 
     res.cookie("access_token", token, {maxAge: appData.getDate * 300})
@@ -30,7 +35,7 @@ exports.login = function(req, res){
     }
 
     let body = req.body;
-    let userModel = new location.userModel(body.username, req.body.salary, req.body.desiredLeft);
+    let userModel = new location.UserModel(body.username, req.body.salary, req.body.desiredLeft);
 }
 
 exports.logout = function(req, res){
