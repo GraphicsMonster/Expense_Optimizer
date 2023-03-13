@@ -46,7 +46,7 @@ exports.login = async function(req, res){
     let result = await passwordManager.comparePassword(body.password, password);
 
     if(result){
-        res.status(200).send(JSON.stringify(body.username));
+        res.status(200).send(JSON.stringify("Successfully logged in"));
         return;
     }
     res.status(400).send("Wrong password, try again.");
@@ -88,6 +88,7 @@ exports.changeUsername = async function(req, res){
     console.log(newUsername);
     res.status(200).send(JSON.stringify(newUsername));
 }
+
 
 
 
