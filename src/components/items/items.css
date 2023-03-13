@@ -68,7 +68,7 @@
 .items-li-container-back{
   background-color:#fda547;
   position:relative;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
   -webkit-box-shadow: inset 1px 1px 3px 1px rgba(0,0,0,0.2);
 -moz-box-shadow: inset 1px 1px 3px 1px rgba(0,0,0,0.2);
 box-shadow: inset 1px 1px 3px 1px rgba(0,0,0,0.2);
@@ -128,7 +128,7 @@ justify-content: center;
 }
 
 .items-li-active{
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 
