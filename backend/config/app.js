@@ -27,20 +27,18 @@ const hostname = envparser.obj.hostname;
 const port = envparser.obj.port;
 const secretKey = envparser.obj.jwtSecretKey;
 const expirationDate = envparser.obj.jwtExpirationDate;
+const {authenticateJWT} = require("../auth/refreshToken");
 require('../routes/userRoutes.js')(app);
 //require('../routes/expenseRoutes.js')(app);
 const db = require('../db/data-source.js');
-const {authenticateJWT} = require("../auth/refreshToken");
-
-
-app.use(authenticateJWT)
+app.use(authenticateJWT);
 
 db.dataSource.initialize()
     .then(()=>console.log("Connection is established"))
     .catch((e)=>console.log(e))
 
 app.get('/', (req, res)=>{
-    res.send("hello world")
+    res.send(JSON.stringify("hello world"))
 })
 
 
