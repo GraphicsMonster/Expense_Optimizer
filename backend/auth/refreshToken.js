@@ -14,17 +14,23 @@ function getRefreshedToken(payload, jwtSecretKey, jwtExpirationDate){
 }
 
 const authenticateJWT = (req, res, next) => {
-    let token = req.cookies["access_token"];
-    if (token != null){
-        let payload;
-        try {
-            payload = jwt.verify(token, "group_cooperation");
-        } catch (e) {
-            if (e instanceof jwt.JsonWebTokenError) {
-                return res.status(401).end();
+
+    if(req != null){
+        let token = req.cookies["access_token"];
+        console.log("AUTHENTICATION!!!!");
+        if (token != null) {
+            let payload;
+            try {
+                payload = jwt.verify(token, "group_cooperation");
+            } catch (e) {
+                if (e instanceof jwt.JsonWebTokenError) {
+                    return res.status(401).end();
+                }
             }
+            return next();
+        } else {
+           return next();
         }
-        return next();
     }else{
         return next();
     }

@@ -89,6 +89,10 @@ exports.changeUsername = async function(req, res){
     res.status(200).send(JSON.stringify(newUsername));
 }
 
+exports.changeDesiredLeft = async function(req, res){
+    let token = req.cookies["access_token"];
+}
+
 
 
 
