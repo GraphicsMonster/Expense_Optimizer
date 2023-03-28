@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
 const app = express();
 app.use(
     cors(
@@ -27,11 +26,12 @@ const hostname = envparser.obj.hostname;
 const port = envparser.obj.port;
 const secretKey = envparser.obj.jwtSecretKey;
 const expirationDate = envparser.obj.jwtExpirationDate;
-const {authenticateJWT} = require("../auth/refreshToken");
+const authentication = require("../auth/refreshToken");
 require('../routes/userRoutes.js')(app);
 //require('../routes/expenseRoutes.js')(app);
 const db = require('../db/data-source.js');
-app.use(authenticateJWT);
+app.use(authentication.authenticateJWT);
+
 
 db.dataSource.initialize()
     .then(()=>console.log("Connection is established"))
