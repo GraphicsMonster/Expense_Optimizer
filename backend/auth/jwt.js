@@ -14,25 +14,31 @@ function getRefreshedToken(payload, jwtSecretKey, jwtExpirationDate){
 }
 
 const authenticateJWT = (req, res, next) => {
-
     if(req != null){
         let token = req.cookies["access_token"];
-        console.log("AUTHENTICATION!!!!");
-        if (token != null) {
+        if (token !== "undefined") {
             let payload;
             try {
-                payload = jwt.verify(token, "group_cooperation");
+                payload = jwt.verify(token, jwtSecretKey);
             } catch (e) {
                 if (e instanceof jwt.JsonWebTokenError) {
                     return res.status(401).end();
                 }
             }
+            req.username = req.query.username;
+            console.log(req.username)
             return next();
         } else {
+            req.username = req.query.username;
+            token = jwt.sign({username: req.username}, appData.getKey, {
+                algorithm: "HS256",
+                expiresIn: appData.getDate
+            });
+            res.cookie("access_token", token);
            return next();
         }
     }else{
-        return next();
+        res.status(401).end();
     }
 };
 

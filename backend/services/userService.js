@@ -33,6 +33,11 @@ class UserService{
         const user = await this.userRepository.findOneBy({username: username});
         return user.password;
     }
+
+    async fetchAllData(username){
+        const user = await this.userRepository.findOneBy({username: username});
+        return user;
+    }
 }
 
 module.exports = {UserService}

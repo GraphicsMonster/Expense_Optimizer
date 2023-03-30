@@ -1,10 +1,8 @@
 const {create} = require("../handlers/userHandlers.js");
-const {authenticateJWT} = require("../auth/refreshToken");
+const {authenticateJWT} = require("../auth/jwt");
 module.exports = function(router){
-    let jwtLocation = require('../auth/refreshToken.js')
+    let jwtLocation = require('../auth/jwt.js')
     let user = require('../handlers/userHandlers.js')
-
-
 
     //Register new user
     router.post('/user/register', user.register)
