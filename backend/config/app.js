@@ -20,17 +20,19 @@ app.use(session({
     cookie: {secure: true}
 }));
 app.use(cookieParser());
+const authentication = require("../auth/jwt");
+app.use(authentication.authenticateJWT);
 app.use(bodyParser.json());
 const envparser = require('./envParser.js');
 const hostname = envparser.obj.hostname;
 const port = envparser.obj.port;
 const secretKey = envparser.obj.jwtSecretKey;
 const expirationDate = envparser.obj.jwtExpirationDate;
-const authentication = require("../auth/refreshToken");
+
 require('../routes/userRoutes.js')(app);
 //require('../routes/expenseRoutes.js')(app);
 const db = require('../db/data-source.js');
-app.use(authentication.authenticateJWT);
+
 
 
 db.dataSource.initialize()

@@ -58,28 +58,12 @@ exports.logout = function(req, res){
 }
 
 exports.getUserInfo = function(req, res){
-    let token = req.cookies["access_token"];
-    var payload
-    try {
-        payload = jwt.verify(token, appData.getKey);
-    }catch (e){
-        if (e instanceof jwt.JsonWebTokenError){
-            return res.status(401).end();
-        }
-    }
-    return res.status(400).send(payload.username);
+    let username = req.username;
+    user = uService.fetchAllData(username);
+    res.send(user);
 }
 
 exports.changeUsername = async function(req, res){
-    let token = req.cookies["access_token"];
-    var payload;
-    try {
-        payload = jwt.verify(token, appData.getKey);
-    }catch (e){
-        if (e instanceof jwt.JsonWebTokenError){
-            return res.status(401).end();
-        }
-    }
     if(!req.body){
         res.status(401).send({message: "HTTP body can't be empty"});
     }
@@ -90,7 +74,7 @@ exports.changeUsername = async function(req, res){
 }
 
 exports.changeDesiredLeft = async function(req, res){
-    let token = req.cookies["access_token"];
+    let token = req.username;
 }
 
 
